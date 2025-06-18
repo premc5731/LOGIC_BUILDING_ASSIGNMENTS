@@ -1,19 +1,20 @@
-// 1. Write application which accept file name from user and open that file in read mode.
+// 2. Write application which accept file name from user and create that file.
 // Input : Demo.txt
-// Output : File opened successfully.
+// Output : File created successfully.
+
 
 #include<stdio.h>
 #include<stdbool.h>
 #include<fcntl.h>
 
-bool OpenFile(char *FileName)
+bool CreateFile(char *FileName)
 {
     int fd = 0;
     bool bAns = false;
 
-    fd = open(FileName,O_RDONLY);
+    fd = creat(FileName,0777);
 
-    if(fd > 0)
+    if(fd > 2)
     {
         bAns = true;
     }
@@ -35,15 +36,15 @@ int main()
     printf("Enter file name : ");
     scanf("%[^'\n']s",Fname);
 
-    bRet = OpenFile(Fname);
+    bRet = CreateFile(Fname);
 
     if(bRet == true)
     {
-        printf("File opened successfully.");
+        printf("File created successfully.");
     }
     else
     {
-        printf("Invalid file name");
+        printf("unable to create file");
     }
     return 0;
 }
